@@ -23,97 +23,67 @@ body{
 
 .personagem{
     position:absolute;
-    left:50px;
-    bottom:120px;
-    width:120px;
-}
-.fala{
-    position:absolute;
-    top:70px;
-    left:50px;
-    width:320px;
+    left:150px;
+    bottom:310px;
+    width:250px;
 }
 
+.fala{
+    position:absolute;
+    top:230px;
+    left:340px;
+    width:380px;
+    z-index: 10;
+}
 .fala img{
     width:100%;
 }
-
 .fala p{
     position:absolute;
-    top:40px;
-    left:20px;
-    width:280px;
+    top:25px;
+    left:60px;
+    width:240px;
+    font-size:15px;
+    line-height:1.5;
     text-align:center;
-    font-size:14px;
-    color:black;
 }
 
 .painel{
     position:absolute;
-    top:150px;
+    top:250px;
     left:50%;
     transform:translateX(-50%);
     width:600px;
+     z-index: 1;
 }
 
 .card-painel{
     width:100%;
-}
-
-.menos,
-.mais{
-    position:absolute;
-    top:95px;
-    width:70px;
-    height:60px;
-    border:none;
-    background:#8a3417;
-    color:white;
-    font-size:35px;
-    cursor:pointer;
-}
-
-.menos{
-    left:90px;
-}
-
-.mais{
-    right:90px;
-}
-
-#valor{
-    position:absolute;
-    top:105px;
-    left:50%;
-    transform:translateX(-50%);
-    font-size:45px;
-    color:#6b2100;
+    display:block;
 }
 
 .continue{
     position:absolute;
-    top:420px;
+    top:620px;
     left:50%;
     transform:translateX(-50%);
     width:300px;
     text-decoration:none;
+    animation:pular 1.2s infinite;
 }
 
 .continue img{
     width:100%;
 }
-
 .continue span{
     position:absolute;
-    top:55px;
+    top:50%;
     left:50%;
-    transform:translateX(-50%);
+    transform:translate(-50%, -50%);
     color:#6b2100;
-    font-size:24px;
-
-
-    animation:pular 1.2s infinite;
+    font-size:20px;
 }
+
 
 @keyframes pular{
     50%{

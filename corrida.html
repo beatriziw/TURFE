@@ -20,36 +20,11 @@
 <div class="painel">
     <img src="imgs/card2.webp" class="card-painel">
 
-    <button onclick="diminuir()" class="menos">-</button>
-
-    <span id="valor">4</span>
-
-    <button onclick="aumentar()" class="mais">+</button>
 </div>
 
 <a href="jogo.html" class="continue">
     <img src="imgs/card_redondo.png">
     <span>CONTINUE</span>
 </a>
-</body>
-
-<script>
-let qtd = 4;
-
-function aumentar(){
-    if(qtd < 6){
-        qtd++;
-        document.getElementById("valor").innerText = qtd;
-    }
-}
-
-function diminuir(){
-    if(qtd > 2){
-        qtd--;
-        document.getElementById("valor").innerText = qtd;
-    }
-}
-</script>
-
 </body>
 </html>
