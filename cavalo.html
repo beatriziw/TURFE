@@ -39,18 +39,20 @@
 
     <div class="ladodireito">
 
-        <div class="setaesquerda">
-            <img src="imgs/setaesquerda.png">
+        <div class="setaesquerda" id="anterior">
+            <img src="imgs/setaesquerda.png" onclick="anterior()">
         </div>
 
         <div class="card">
             <img src="imgs/card3.png">
             <p>ESCOLHA SEU<br>CAVALO:</p>
-            <img src="imgs/cavalo1.png" class="cavalo">
+            <div class="cavalo">
+            <img src="imgs/cavalo1.png" id="cavalo">
+            </div>
         </div>
 
-        <div class="setadireita">
-            <img src="imgs/setadireita.png">
+        <div class="setadireita" id="proximo">
+            <img src="imgs/setadireita.png" onclick="proximo()">
         </div>
 
     </div>
@@ -60,3 +62,38 @@
 
 </body>
 </html>
+<script>
+    let opcoes = [
+        "imgs/cavalo1.png",
+        "imgs/cavalo2.png",
+        "imgs/cavalo3.png",
+        "imgs/cavalo4.png",
+        "imgs/cavalo5.png",
+        "imgs/cavalo6.png",
+        "imgs/cavalo7.png",
+        "imgs/cavalo8.png"
+    ]
+
+    let imagem = document.getElementById("cavalo");
+
+    let indice = 0
+
+    function anterior(){
+        indice--
+        
+        if(indice<0){
+            indice = opcoes.length-1
+        }
+        imagem.src=opcoes[indice]
+    }
+     function proximo(){
+        indice++
+        
+        if(indice>=opcoes.length){
+            indice=0
+        }
+        imagem.src=opcoes[indice]
+    }
+
+    
+</script>
