@@ -30,7 +30,7 @@
             <input type="text" id="input_nome">
         </div>
 
-        <a href="jogo.html" class="continue">
+        <a href="jogo.html" class="continue" onclick="enviar()">
             <img src="imgs/card_redondo.png">
             <span>CONTINUE</span>
         </a>
@@ -63,6 +63,8 @@
 </body>
 </html>
 <script>
+   let cavalos = {};
+   
     let opcoes = [
         "imgs/cavalo1.png",
         "imgs/cavalo2.png",
@@ -73,6 +75,7 @@
         "imgs/cavalo7.png",
         "imgs/cavalo8.png"
     ]
+
 
     let imagem = document.getElementById("cavalo");
 
@@ -93,6 +96,13 @@
             indice=0
         }
         imagem.src=opcoes[indice]
+    }
+
+    function enviar(){
+    let nome = input_nome.value
+    
+     cavalos.nome = nome;
+     cavalos.skin = opcoes[indice];
     }
 
     
