@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="css/podio.css">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+<title>Turfe</title>
+</head>
+<body>
+
+    <div class="podio-container">
+        
+        <div class="posicao segundo-lugar">
+            <img src="imgs/cavalo1.png" alt="2º Lugar" class="cavalo">
+            <div class="card-vencedor">2° LUGAR</div>
+        </div>
+
+        <div class="posicao primeiro-lugar">
+            <img src="imgs/cavalo2.png" alt="1º Lugar" class="cavalo">
+            <div class="card-vencedor">1° LUGAR</div>
+        </div>
+
+        <div class="posicao terceiro-lugar">
+            <img src="imgs/cavalo3.png" alt="3º Lugar" class="cavalo">
+            <div class="card-vencedor">3° LUGAR</div>
+        </div>
+
+    </div>
+
+    <a href="index.html" class="start">RECOMEÇAR</a>
+
+
+<audio id="musica" loop>
+    <source src="audio/musica.mp3" type="audio/mpeg">
+</audio>
+
+</body>
+</html>
+<script>
+
+document.addEventListener("click", () => {
+    document.getElementById("musica").play();
+}, { once: true });
+
+
+
+
+</script>
