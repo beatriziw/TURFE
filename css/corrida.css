@@ -1,0 +1,122 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    height:100vh;
+    background:url("../imgs/cenario.webp");
+    background-size:cover;
+    background-position:center;
+    overflow:hidden;
+    font-family:'Press Start 2P', cursive;
+    position:relative;
+}
+
+.icon{
+    position:absolute;
+    top:20px;
+    right:20px;
+    width:50px;
+}
+
+.personagem{
+    position:absolute;
+    left:50px;
+    bottom:120px;
+    width:120px;
+}
+.fala{
+    position:absolute;
+    top:70px;
+    left:50px;
+    width:320px;
+}
+
+.fala img{
+    width:100%;
+}
+
+.fala p{
+    position:absolute;
+    top:40px;
+    left:20px;
+    width:280px;
+    text-align:center;
+    font-size:14px;
+    color:black;
+}
+
+.painel{
+    position:absolute;
+    top:150px;
+    left:50%;
+    transform:translateX(-50%);
+    width:600px;
+}
+
+.card-painel{
+    width:100%;
+}
+
+.menos,
+.mais{
+    position:absolute;
+    top:95px;
+    width:70px;
+    height:60px;
+    border:none;
+    background:#8a3417;
+    color:white;
+    font-size:35px;
+    cursor:pointer;
+}
+
+.menos{
+    left:90px;
+}
+
+.mais{
+    right:90px;
+}
+
+#valor{
+    position:absolute;
+    top:105px;
+    left:50%;
+    transform:translateX(-50%);
+    font-size:45px;
+    color:#6b2100;
+}
+
+.continue{
+    position:absolute;
+    top:420px;
+    left:50%;
+    transform:translateX(-50%);
+    width:300px;
+    text-decoration:none;
+}
+
+.continue img{
+    width:100%;
+}
+
+.continue span{
+    position:absolute;
+    top:55px;
+    left:50%;
+    transform:translateX(-50%);
+    color:#6b2100;
+    font-size:24px;
+
+
+    animation:pular 1.2s infinite;
+}
+
+@keyframes pular{
+    50%{
+        transform:translateX(-50%) translateY(-10px);
+    }
+}

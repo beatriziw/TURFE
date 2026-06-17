@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="css/corrida.css">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+<title>Turfe</title>
+</head>
+<body>
+
+<img src="imgs/icon.png" class="icon">
+<div class="fala">
+    <img src="imgs/balão.webp" alt="">
+    <p>QUAL É A QUANTIDADE DE CAVALOS QUE VÃO CORRER?</p>
+</div>
+
+<img src="imgs/personagem.png" class="personagem">
+
+<div class="painel">
+    <img src="imgs/card2.webp" class="card-painel">
+
+    <button onclick="diminuir()" class="menos">-</button>
+
+    <span id="valor">4</span>
+
+    <button onclick="aumentar()" class="mais">+</button>
+</div>
+
+<a href="jogo.html" class="continue">
+    <img src="imgs/card_redondo.png">
+    <span>CONTINUE</span>
+</a>
+</body>
+
+<script>
+let qtd = 4;
+
+function aumentar(){
+    if(qtd < 6){
+        qtd++;
+        document.getElementById("valor").innerText = qtd;
+    }
+}
+
+function diminuir(){
+    if(qtd > 2){
+        qtd--;
+        document.getElementById("valor").innerText = qtd;
+    }
+}
+</script>
+
+</body>
+</html>
