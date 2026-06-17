@@ -1,0 +1,189 @@
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+width:100%;
+height:100vh;
+background:url("../imgs/cenario.webp") center/cover no-repeat;
+overflow:hidden;
+font-family:'Press Start 2P', cursive;
+}
+
+
+.container{
+width:100%;
+height:100vh;
+display:flex;
+justify-content:space-around;
+align-items:center;
+}
+
+.ladoesquerdo{
+width:340px;
+height:500px;
+position:relative;
+}
+
+.personagem{
+position:absolute;
+width:120px;
+top:60px;
+}
+
+.personagem img{
+width: 100%;
+}
+
+.fala{
+position:absolute;
+left:90px;
+top:-10px;
+width:240px;
+}
+
+.fala img{
+width:100%;
+}
+
+.fala p{
+position:absolute;
+top:18px;
+left:10px;
+width:220px;
+text-align:center;
+font-size:11px;
+line-height:1.5;
+color:#000;
+}
+
+.legenda{
+position:absolute;
+top:170px;
+left:10px;
+width:240px;
+}
+
+.legenda img{
+width:100%;
+}
+
+.legenda p{
+position:absolute;
+top:30px;
+width:100%;
+text-align:center;
+font-size:18px;
+color:#6b2100;
+}
+
+.input{
+position:absolute;
+top:260px;
+left:10px;
+width:240px;
+}
+
+.input img{
+width:100%;
+}
+
+.input input{
+position:absolute;
+top:30px;
+left:15px;
+width:210px;
+border:none;
+outline:none;
+background:transparent;
+text-align:center;
+font-family:'Press Start 2P', cursive;
+font-size:12px;
+color:#6b2100;
+}
+
+.continue{
+position:absolute;
+top:360px;
+left:20px;
+width:220px;
+text-decoration:none;
+}
+
+.continue img{
+ width:100%;
+}
+
+.continue span{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+color:#6b2100;
+font-size:18px;
+animation:pular 1.2s infinite;
+}
+
+.ladodireito{
+display:flex;
+align-items:center;
+gap:25px;
+}
+
+.card{
+position:relative;
+width:280px;
+}
+
+.card img:first-child{
+width:100%;
+display:block;
+}
+
+.card p{
+position:absolute;
+top:35px;
+width:100%;
+text-align:center;
+line-height:1.4;
+color:#6b2100;
+font-size:18px;
+}
+
+.cavalo{
+position:absolute;
+width:170px;
+left:25%;
+top:120px;
+}
+
+.setaesquerda,
+.setadireita{
+display:flex;
+align-items:center;
+}
+
+.setaesquerda img,
+.setadireita img{
+width:60px;
+cursor:pointer;
+transition:.2s;
+}
+
+.setaesquerda img:hover,
+.setadireita img:hover{
+transform:scale(1.1);
+}
+
+@keyframes pular{
+
+0%,100%{
+    transform:translate(-50%,-50%);
+}
+50%{
+    transform:translate(-50%,-60%);
+}
+
+}
