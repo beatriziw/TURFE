@@ -14,11 +14,18 @@ body{
     position:relative;
 }
 
+.menu{
+    width: 100%;
+    height: 100vh;
+    position: relative;
+}
+
+/* Ícone*/
 .icon{
-    position:absolute;
-    top:20px;
-    right:20px;
-    width:50px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 55px;
 }
 
 .personagem{
@@ -30,10 +37,10 @@ body{
 
 .fala{
     position:absolute;
-    top:230px;
-    left:340px;
+    top:150px;
+    left:320px;
     width:380px;
-    z-index: 10;
+    
 }
 .fala img{
     width:100%;
@@ -50,11 +57,11 @@ body{
 
 .painel{
     position:absolute;
-    top:250px;
+    top:280px;
     left:50%;
     transform:translateX(-50%);
     width:600px;
-     z-index: 1;
+    
 }
 
 .card-painel{
@@ -89,4 +96,76 @@ body{
     50%{
         transform:translateX(-50%) translateY(-10px);
     }
+}
+
+
+.popup{
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+
+    justify-content: center;
+    align-items: center;
+}
+
+.popup-conteudo{
+    background: #f5d7a1;
+    border: 6px solid #8b5a2b;
+    padding: 30px;
+    width: 500px;
+    text-align: center;
+    color: #4e2400;
+}
+
+.popup-conteudo h2{
+    margin-bottom: 20px;
+}
+
+.popup-conteudo p{
+    margin: 15px 0;
+    font-size: 12px;
+    line-height: 1.8;
+}
+
+.popup-conteudo button{
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-family: 'Press Start 2P', cursive;
+    cursor: pointer;
+}
+
+
+.menos,
+.mais{
+    position:absolute;
+    top:120px;
+    width:70px;
+    height:70px;
+    border:none;
+    background:#8a3417;
+    color:white;
+    font-size:40px;
+    cursor:pointer;
+    font-family:'Press Start 2P', cursive;
+}
+
+.menos{
+    left:80px;
+}
+
+.mais{
+    right:80px;
+}
+
+#quantidade{
+    position:absolute;
+    top:130px;
+    left:50%;
+    transform:translateX(-50%);
+    font-size:40px;
+    color:#6b2100;
 }

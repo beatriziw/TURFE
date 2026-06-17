@@ -8,8 +8,11 @@
 <title>Turfe</title>
 </head>
 <body>
+   <div class="menu">
+   <img src="imgs/icon.png" class="icon" alt="?" onclick="abrirAjuda()">
 
-<img src="imgs/icon.png" class="icon">
+</div>
+
 <div class="fala">
     <img src="imgs/balão.webp" alt="">
     <p>QUAL É A QUANTIDADE DE CAVALOS QUE VÃO CORRER?</p>
@@ -18,13 +21,48 @@
 <img src="imgs/personagem.png" class="personagem">
 
 <div class="painel">
-    <img src="imgs/card2.webp" class="card-painel">
+    <img src="imgs/card2.png" class="card-painel">
+
+    <button class="menos" onclick="diminuir()">-</button>
+    <span id="quantidade">4</span>
+    <button class="mais" onclick="aumentar()">+</button>
 
 </div>
 
-<a href="jogo.html" class="continue">
+    <a href="jogo.html" class="continue">
     <img src="imgs/card_redondo.png">
     <span>CONTINUE</span>
-</a>
+    </a>
+
+ <div id="ajuda" class="popup">
+    <div class="popup-conteudo">
+        <h2>Quantidade de Cavalos</h2>
+        <p>Use os botões + e - para escolher quantos cavalos participarão da corrida.</p>
+        <p>O mínimo é 2 cavalos e o máximo é 6 cavalos.</p>
+        <p>Depois de escolher a quantidade, clique em CONTINUE.</p>
+        <button onclick="fecharAjuda()">FECHAR</button>
+    </div>
+ </div>
+
+<audio id="musica" loop>
+    <source src="audio/musica.mp3" type="audio/mpeg">
+</audio>
 </body>
 </html>
+
+<script>
+
+document.addEventListener("click", () => {
+    document.getElementById("musica").play();
+}, { once: true });
+
+function abrirAjuda() {
+    document.getElementById("ajuda").style.display = "flex";
+}
+
+function fecharAjuda() {
+    document.getElementById("ajuda").style.display = "none";
+}
+
+
+</script>
