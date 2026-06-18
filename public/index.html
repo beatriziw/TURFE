@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <link
+      rel="stylesheet"
+      href="css/style.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
+    <title>Turfe</title>
+    <script src="/socket.io/socket.io.js"></script>
+  </head>
+  <body>
+    <div class="menu">
+      <img
+        src="imgs/icon.png"
+        class="icon"
+        alt="?"
+        onclick="abrirAjuda()"
+      />
+    </div>
+
+    <div class="titulo">
+      <img
+        src="imgs/card.webp"
+        alt=""
+      />
+      <span>GRAND CHAMPIONSHIP</span>
+      <small>RETRO PLAINS</small>
+    </div>
+
+    <a
+      href="corrida.html"
+      class="start"
+    >
+      <img
+        src="imgs/card2.png"
+        alt=""
+      />
+      <span>START</span>
+    </a>
+
+    <div class="rodape">
+      <p>LICENSING SUPPORT V1.2.0-ARCADE</p>
+      <br />
+      <p>© PIXEL TURF STUDIOS</p>
+    </div>
+
+    <div
+      id="ajuda"
+      class="popup"
+    >
+      <div class="popup-conteudo">
+        <h2>Como Jogar</h2>
+        <p>Clique em START para iniciar a corrida.</p>
+        <p>Escolha seu cavalo e acompanhe a disputa.</p>
+        <p>O objetivo é chegar em primeiro lugar!</p>
+
+        <button onclick="fecharAjuda()">FECHAR</button>
+      </div>
+    </div>
+
+    <audio
+      id="musica"
+      loop
+    >
+      <source
+        src="audio/musica.mp3"
+        type="audio/mpeg"
+      />
+    </audio>
+  </body>
+</html>
+<script>
+  const socket = io();
+
+  document.addEventListener(
+    'click',
+    () => {
+      document.getElementById('musica').play();
+    },
+    { once: true }
+  );
+
+  function abrirAjuda() {
+    document.getElementById('ajuda').style.display = 'flex';
+  }
+
+  function fecharAjuda() {
+    document.getElementById('ajuda').style.display = 'none';
+  }
+</script>

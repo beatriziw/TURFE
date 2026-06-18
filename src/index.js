@@ -1,5 +1,6 @@
 const express = require('express');
 const http = require('http');
+const { Server } = require('socket.io');
 
 const app = express();
 app.use(express.static('public'));
@@ -10,4 +11,16 @@ const port = 3000;
 
 server.listen(port, host, function () {
   console.log(`Server running at http://localhost:${port}`);
+});
+
+const io = new Server(server, {
+  cors: { origin: '*' }
+});
+
+io.on('connection', (socket) => {
+  console.log(`user connected: ${socket.id}`);
+
+  socket.on('disconnect', () => {
+    console.log(`user disconnected: ${socket.id}`);
+  });
 });
