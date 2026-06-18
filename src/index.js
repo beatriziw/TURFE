@@ -60,6 +60,31 @@ io.on('connection', (socket) => {
     console.log(`game started with ${horses.length} horses`);
   });
 
+  socket.on('skill', (id) => {
+    let max = 3;
+    let min = 1;
+    let interval = max - min;
+
+    let player = horses.find((horse) => horse.id == socket.id);
+    let target = horses.find((horse) => horse.id == id);
+
+    if (player && target) {
+      let r = Number((Math.random() * interval + min).toFixed(1));
+
+      let lastLap = target.laps[target.laps.length];
+      let updattedLastLap = lastLap - r;
+
+      io.emit('skill', {
+        player,
+        target,
+        lastLap,
+        updattedLastLap
+      });
+    }
+
+    return;
+  });
+
   socket.on('play', () => {
     let max = 9;
     let min = 7;
@@ -75,6 +100,14 @@ io.on('connection', (socket) => {
         number: previousLap ? previousLap.number + 1 : 1,
         time: r
       });
+    }
+
+    if (horse && currentLap < totalLaps) {
+      let r = Number((Math.random() * 9 + 1).toFixed(1));
+
+      if (r % 4 == 0) {
+        io.emit('skill', socket.id);
+      }
     }
 
     if (check()) {
