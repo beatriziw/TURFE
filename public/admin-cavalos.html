@@ -8,7 +8,7 @@
     />
     <link
       rel="stylesheet"
-      href="css/style.css"
+      href="css/corrida.css"
     />
     <link
       href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
@@ -26,42 +26,62 @@
       />
     </div>
 
-    <div class="titulo">
+    <div class="fala">
       <img
-        src="imgs/card.webp"
+        src="imgs/balão.webp"
         alt=""
       />
-      <span>GRAND CHAMPIONSHIP</span>
-      <small>RETRO PLAINS</small>
+      <p>QUAL É A QUANTIDADE DE CAVALOS QUE VÃO CORRER?</p>
+    </div>
+
+    <img
+      src="imgs/personagem.png"
+      class="personagem"
+    />
+
+    <div class="painel">
+      <img
+        src="imgs/card2.png"
+        class="card-painel"
+      />
+
+      <button
+        class="menos"
+        onclick="diminuir()"
+      >
+        -
+      </button>
+      <span
+        class="quantidade"
+        id="horses_qtt"
+        >4</span
+      >
+      <button
+        class="mais"
+        onclick="aumentar()"
+      >
+        +
+      </button>
     </div>
 
     <a
-      href="#"
-      class="start"
+      onclick="sessionStorage.horsesQtt = qtt"
+      href="admin-voltas.html"
+      class="continue"
     >
-      <img
-        src="imgs/card2.png"
-        alt=""
-      />
-      <span>START</span>
+      <img src="imgs/card_redondo.png" />
+      <span>CONTINUE</span>
     </a>
-
-    <div class="rodape">
-      <p>LICENSING SUPPORT V1.2.0-ARCADE</p>
-      <br />
-      <p>© PIXEL TURF STUDIOS</p>
-    </div>
 
     <div
       id="ajuda"
       class="popup"
     >
       <div class="popup-conteudo">
-        <h2>Como Jogar</h2>
-        <p>Clique em START para iniciar a corrida.</p>
-        <p>Escolha seu cavalo e acompanhe a disputa.</p>
-        <p>O objetivo é chegar em primeiro lugar!</p>
-
+        <h2>Quantidade de Cavalos</h2>
+        <p>Use os botões + e - para escolher quantos cavalos participarão da corrida.</p>
+        <p>O mínimo é 2 cavalos e o máximo é 6 cavalos.</p>
+        <p>Depois de escolher a quantidade, clique em CONTINUE.</p>
         <button onclick="fecharAjuda()">FECHAR</button>
       </div>
     </div>
@@ -77,6 +97,7 @@
     </audio>
   </body>
 </html>
+
 <script>
   document.addEventListener(
     'click',
@@ -92,5 +113,21 @@
 
   function fecharAjuda() {
     document.getElementById('ajuda').style.display = 'none';
+  }
+
+  let qtt = Number(horses_qtt.innerHTML);
+
+  function diminuir() {
+    if (qtt == 2) return;
+
+    qtt--;
+    horses_qtt.innerHTML = qtt;
+  }
+
+  function aumentar() {
+    if (qtt == 6) return;
+
+    qtt++;
+    horses_qtt.innerHTML = qtt;
   }
 </script>

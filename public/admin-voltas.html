@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <link
+      rel="stylesheet"
+      href="css/corrida.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
+    <script src="/socket.io/socket.io.js"></script>
+
+    <title>Turfe</title>
+  </head>
+  <body>
+    <div class="menu">
+      <img
+        src="imgs/icon.png"
+        class="icon"
+        alt="?"
+        onclick="abrirAjuda()"
+      />
+    </div>
+
+    <div class="fala">
+      <img
+        src="imgs/balão.webp"
+        alt=""
+      />
+      <p>QUAL É A QUANTIDADE DE VOLTAS?</p>
+    </div>
+
+    <img
+      src="imgs/personagem.png"
+      class="personagem"
+    />
+
+    <div class="painel">
+      <img
+        src="imgs/card2.png"
+        class="card-painel"
+      />
+
+      <button
+        class="menos"
+        onclick="diminuir()"
+      >
+        -
+      </button>
+      <span
+        class="quantidade"
+        id="laps_qtt"
+        >4</span
+      >
+      <button
+        class="mais"
+        onclick="aumentar()"
+      >
+        +
+      </button>
+    </div>
+
+    <a
+      onclick="open()"
+      href="#"
+      class="continue"
+    >
+      <img src="imgs/card_redondo.png" />
+      <span>Abrir sala</span>
+    </a>
+
+    <div
+      id="ajuda"
+      class="popup"
+    >
+      <div class="popup-conteudo">
+        <h2>Quantidade de Voltas</h2>
+        <p>Use os botões + e - para escolher quantas voltas a corrida terá.</p>
+        <p>O mínimo é 1 volta e o máximo são 9 voltas.</p>
+        <p>Depois de escolher a quantidade, clique em CONTINUE.</p>
+        <button onclick="fecharAjuda()">FECHAR</button>
+      </div>
+    </div>
+
+    <audio
+      id="musica"
+      loop
+    >
+      <source
+        src="audio/musica.mp3"
+        type="audio/mpeg"
+      />
+    </audio>
+  </body>
+</html>
+
+<script>
+  document.addEventListener(
+    'click',
+    () => {
+      document.getElementById('musica').play();
+    },
+    { once: true }
+  );
+
+  function abrirAjuda() {
+    document.getElementById('ajuda').style.display = 'flex';
+  }
+
+  function fecharAjuda() {
+    document.getElementById('ajuda').style.display = 'none';
+  }
+
+  let qtt = Number(laps_qtt.innerHTML);
+
+  function diminuir() {
+    if (qtt == 1) return;
+
+    qtt--;
+    laps_qtt.innerHTML = qtt;
+  }
+
+  function aumentar() {
+    if (qtt == 9) return;
+
+    qtt++;
+    laps_qtt.innerHTML = qtt;
+  }
+
+  const socket = io();
+
+  function open() {
+    let horses = sessionStorage.horsesQtt;
+    let laps = qtt;
+
+    socket.emit('open', { horses, laps });
+  }
+</script>
