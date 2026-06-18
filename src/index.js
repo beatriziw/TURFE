@@ -41,7 +41,8 @@ io.on('connection', (socket) => {
       id: socket.id,
       name,
       style,
-      laps: []
+      laps: [],
+      totalTime: 0
     });
 
     if (horses.length >= 2) ready = true;
@@ -100,6 +101,8 @@ io.on('connection', (socket) => {
         number: previousLap ? previousLap.number + 1 : 1,
         time: r
       });
+
+      horse.totalTime += r;
     }
 
     if (horse && currentLap < totalLaps) {

@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <link
+      rel="stylesheet"
+      href="css/podio.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
+    <script src="/socket.io/socket.io.js"></script>
+
+    <title>Turfe</title>
+  </head>
+  <body>
+    <div class="podio-container">
+      <div class="posicao segundo-lugar">
+        <img
+          id="second_style"
+          src="imgs/cavalo1.png"
+          alt="2º Lugar"
+          class="cavalo"
+        />
+        <div class="card-vencedor">
+          <p>2° LUGAR</p>
+          <p id="second_name">aaaa</p>
+        </div>
+      </div>
+
+      <div class="posicao primeiro-lugar">
+        <img
+          id="first_style"
+          src="imgs/cavalo2.png"
+          alt="1º Lugar"
+          class="cavalo"
+        />
+        <div class="card-vencedor">
+          <p>1° LUGAR</p>
+          <p id="first_name">aaaa</p>
+        </div>
+      </div>
+
+      <div class="posicao terceiro-lugar">
+        <img
+          id="third_style"
+          src="imgs/cavalo3.png"
+          alt="3º Lugar"
+          class="cavalo"
+        />
+        <div class="card-vencedor">
+          <p>3° LUGAR</p>
+          <p id="third_name">aaaa</p>
+        </div>
+      </div>
+    </div>
+
+    <a
+      href="index.html"
+      class="start"
+      >RECOMEÇAR</a
+    >
+
+    <audio
+      id="musica"
+      loop
+    >
+      <source
+        src="audio/musica.mp3"
+        type="audio/mpeg"
+      />
+    </audio>
+  </body>
+</html>
+<script>
+  document.addEventListener(
+    'click',
+    () => {
+      document.getElementById('musica').play();
+    },
+    { once: true }
+  );
+
+  const socket = io();
+  let res = [];
+
+  socket.on('finish', (horses) => {
+    let sorted = horses.sort((a, b) => a.totalTime - b.totalTime);
+
+    for (let i = 0; i < sorted.length; i++) {
+      let item = sorted[i];
+      if (i <= 2) {
+        res.push({
+          name: item.name,
+          style: item.style,
+          totalTime: item.totalTime
+        });
+      }
+    }
+
+    first_name.innerHTML = sorted[0].name;
+    second_name.innerHTML = sorted[1].name;
+    third_name.innerHTML = sorted[2].name;
+
+    first_style.src = sorted[0].style;
+    second_style.src = sorted[1].style;
+    third_style.src = sorted[2].style;
+
+    first_totalTime.innerHTML = sorted[0].totalTime;
+    second_totalTime.innerHTML = sorted[1].totalTime;
+    third_totalTime.innerHTML = sorted[2].totalTime;
+  });
+</script>
