@@ -11,6 +11,10 @@
       href="css/cavalo.css"
     />
     <link
+      rel="stylesheet"
+      href="css/jogo.css"
+    />
+    <link
       href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
       rel="stylesheet"
     />
@@ -99,7 +103,7 @@
       <div class="container-cards">
         <div class="card1">
           <small
-            >CAVALO 1 ESTÁ <br />
+            ><span id="span_winning"></span> ESTÁ <br />
             <br />
             GANHANDO</small
           >
@@ -114,12 +118,7 @@
             src="./imgs/card2.png"
             id="card2-img"
           />
-          <div id="loading_container">
-            <img
-              src="./imgs/loading.gif"
-              id="loading"
-            />
-          </div>
+          <div id="players_leaderboard"></div>
           <div id="play_container">
             <button onclick="play()">Dar volta</button>
           </div>
@@ -269,6 +268,31 @@
     if (player.id == socket.id) {
       skill_container.style.display = 'none';
     }
+  });
+
+  socket.on('next', ({ currentLap, horses }) => {
+    let sorted = horses.sort((a, b) => a.totalTime - b.totalTime);
+    let content = '';
+
+    for (let i = 0; i < sorted.length; i++) {
+      let player = sorted[i];
+
+      content += `
+        <div> 
+          <img
+            src=${player.style}
+            class="player"
+          />
+          <div class="card-player">
+            <p>${player.name}</p>
+            <p>Tempo atual: ${player.totalTime}</p>
+          </div>
+        </div>
+      `;
+    }
+
+    players_leaderboard.innerHTML = content;
+    span_winning.innerHTML = sorted[0].name;
   });
 
   socket.on('finish', ({ currentLap, horses }) => {
