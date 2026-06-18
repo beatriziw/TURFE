@@ -19,7 +19,10 @@
     <title>Turfe</title>
   </head>
   <body>
-    <div class="container">
+    <section
+      id="horse_section"
+      class="container"
+    >
       <div class="ladoesquerdo">
         <div class="personagem">
           <img src="imgs/personagem.png" />
@@ -37,14 +40,13 @@
           />
         </div>
 
-        <a
-          href="jogo.html"
+        <div
           class="continue"
           onclick="enviar()"
         >
           <img src="imgs/card_redondo.png" />
           <span>CONTINUE</span>
-        </a>
+        </div>
       </div>
 
       <div class="ladodireito">
@@ -79,7 +81,67 @@
           />
         </div>
       </div>
-    </div>
+    </section>
+
+    <section
+      id="game_section"
+      style="display: none"
+    >
+      <div class="container-header">
+        <img
+          src="./imgs/icon.png"
+          class="icon"
+          alt="?"
+          onclick="abrirAjuda()"
+        />
+      </div>
+
+      <div class="container-cards">
+        <div class="card1">
+          <small
+            >CAVALO 1 ESTÁ <br />
+            <br />
+            GANHANDO</small
+          >
+          <img
+            src="./imgs/card2.png"
+            id="card1-img"
+          />
+        </div>
+
+        <div class="card2">
+          <img
+            src="./imgs/card2.png"
+            id="card2-img"
+          />
+          <div id="loading_container">
+            <img
+              src="./imgs/loading.gif"
+              id="loading"
+            />
+          </div>
+          <div id="play_container">
+            <button onclick="play()">Dar volta</button>
+          </div>
+          <div id="skill_container">
+            <button>Usar habilidade</button>
+          </div>
+        </div>
+
+        <div
+          id="ajuda"
+          class="popup"
+        >
+          <div class="popup-conteudo">
+            <h2>Como Jogar</h2>
+            <p>Clique em START para iniciar a corrida.</p>
+            <p>Escolha seu cavalo e acompanhe a disputa.</p>
+            <p>O objetivo é chegar em primeiro lugar!</p>
+            <button onclick="fecharAjuda()">FECHAR</button>
+          </div>
+        </div>
+      </div>
+    </section>
   </body>
 </html>
 <script>
@@ -121,5 +183,34 @@
     let name = input_nome.value;
 
     socket.emit('register', { name, style: opcoes[indice] });
+    horse_section.style.display = 'none';
+    game_section.style.display = 'flex';
   }
+
+  // game
+
+  function abrirAjuda() {
+    document.getElementById('ajuda').style.display = 'flex';
+  }
+
+  function fecharAjuda() {
+    document.getElementById('ajuda').style.display = 'none';
+  }
+
+  function play() {
+    socket.emit('play');
+  }
+
+  function skill(id) {
+    socket.emit('skill_used', id);
+  }
+
+  socket.on('skill_available', (id) => {
+    if (socket.id == id) {
+    }
+  });
+
+  socket.on('finish', () => {
+    window.location.href = '/podio.html';
+  });
 </script>

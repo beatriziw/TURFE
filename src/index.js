@@ -19,8 +19,11 @@ const io = new Server(server, {
 
 let totalHorses = 0;
 let totalLaps = 0;
+let currentLap = 1;
 
 let horses = [];
+
+let ready = false;
 
 io.on('connection', (socket) => {
   console.log(`user connected: ${socket.id}`);
@@ -58,7 +61,7 @@ io.on('connection', (socket) => {
       return;
     }
 
-    io.emit('startted', laps);
+    io.emit('startted', totalLaps);
 
     console.log(`game started with ${horses.length} horses`);
   });
