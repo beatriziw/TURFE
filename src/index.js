@@ -20,6 +20,8 @@ const io = new Server(server, {
 let totalHorses = 0;
 let totalLaps = 0;
 
+let horses = [];
+
 io.on('connection', (socket) => {
   console.log(`user connected: ${socket.id}`);
 
@@ -30,6 +32,21 @@ io.on('connection', (socket) => {
     io.emit('open', laps);
 
     console.log(`waiting players - total horses: ${totalHorses}, total laps: ${totalLaps}`);
+  });
+
+  socket.on('register', ({ name, style }) => {
+    if (horses.length >= totalHorses) return;
+
+    horses.push({
+      id: socket.id,
+      name,
+      style,
+      laps: []
+    });
+
+    if (horses.length >= 2) ready = true;
+
+    console.log('horses: ', horses);
   });
 
   socket.on('disconnect', () => {
