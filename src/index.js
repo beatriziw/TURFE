@@ -49,6 +49,17 @@ io.on('connection', (socket) => {
     console.log('horses: ', horses);
   });
 
+  socket.on('start', () => {
+    if (!ready) {
+      console.log(`error: ${horses.length} horses registered`);
+      return;
+    }
+
+    io.emit('start', laps);
+
+    console.log(`game started with ${horses.length} horses`);
+  });
+
   socket.on('disconnect', () => {
     console.log(`user disconnected: ${socket.id}`);
   });
