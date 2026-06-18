@@ -77,8 +77,11 @@ io.on('connection', (socket) => {
     if (player && target) {
       let r = Number((Math.random() * interval + min).toFixed(1));
 
-      prevTotalTime = target.totalTime;
-      updattedTotalTime = target.totalTime + r;
+      let prevTotalTime = target.totalTime;
+      let updattedTotalTime = target.totalTime + r;
+      let index = horses.findIndex((item) => item.id == player.id);
+
+      horses[index].totalTime = updattedTotalTime;
 
       io.emit('skill_log', {
         player,
