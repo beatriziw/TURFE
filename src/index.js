@@ -60,7 +60,52 @@ io.on('connection', (socket) => {
     console.log(`game started with ${horses.length} horses`);
   });
 
+  socket.on('play', () => {
+    let max = 9;
+    let min = 7;
+    let interval = max - min;
+
+    let horse = horses.find((horse) => horse.id == socket.id);
+
+    if (horse) {
+      let previousLap = horse.laps[horse.laps.length - 1];
+      let r = Number((Math.random() * interval + min).toFixed(1));
+
+      horse.laps.push({
+        number: previousLap ? previousLap.number + 1 : 1,
+        time: r
+      });
+    }
+
+    if (check()) {
+      currentLap++;
+
+      if (currentLap > totalLaps) return io.emit('finish', { currentLap, horses });
+
+      io.emit('next', { currentLap, horses });
+      console.log(`lap done! going to lap ${currentLap}`);
+    }
+
+    return;
+  });
+
   socket.on('disconnect', () => {
     console.log(`user disconnected: ${socket.id}`);
   });
 });
+
+function check() {
+  if (horses.length === 0) return false;
+
+  for (let i = 0; i < horses.length; i++) {
+    let horse = horses[i];
+    let previousLap = horse.laps[horse.laps.length - 1];
+
+    if (!previousLap || previousLap.number < currentLap) {
+      console.log(`Not ready for lap ${currentLap}: ${horse.name}`);
+      return false;
+    }
+  }
+
+  return true;
+}
