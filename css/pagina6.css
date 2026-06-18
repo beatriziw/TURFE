@@ -1,0 +1,40 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+    background: url(../imgs/cenario.webp) center/cover no-repeat;
+    overflow: hidden;
+}
+
+.icon {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 55px;
+}
+
+.card1 {
+    position: absolute;
+    top: 125px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 475px;
+    height: 150px;
+}
+
+.card2 {
+    position: absolute;
+    top: 325px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 575px;
+}
+
+.card2 img {
+    width: 100%;
+}
