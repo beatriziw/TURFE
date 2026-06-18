@@ -77,14 +77,14 @@ io.on('connection', (socket) => {
     if (player && target) {
       let r = Number((Math.random() * interval + min).toFixed(1));
 
-      let lastLap = target.laps[target.laps.length];
-      let updattedLastLap = lastLap - r;
+      prevTotalTime = target.totalTime;
+      updattedTotalTime = target.totalTime + r;
 
       io.emit('skill_log', {
         player,
         target,
-        lastLap,
-        updattedLastLap
+        prevTotalTime,
+        updattedTotalTime
       });
     }
 
@@ -111,10 +111,10 @@ io.on('connection', (socket) => {
     }
 
     if (horse && currentLap < totalLaps) {
-      let r = Number((Math.random() * 9 + 1).toFixed(1));
+      let r = Number((Math.random() * 9 + 1).toFixed());
 
       if (r % 4 == 0) {
-        io.emit('skill_available', socket.id);
+        io.emit('skill_available', { playerId: socket.id, horses });
       }
     }
 

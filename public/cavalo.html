@@ -123,8 +123,24 @@
           <div id="play_container">
             <button onclick="play()">Dar volta</button>
           </div>
-          <div id="skill_container">
-            <button>Usar habilidade</button>
+          <div
+            id="skill_container"
+            style="display: none"
+          >
+            <button onclick="abrirSkill()">Usar habilidade</button>
+          </div>
+        </div>
+
+        <div
+          id="skill"
+          class="popup"
+        >
+          <div class="popup-conteudo">
+            <h2>Escolha alguém para atrapalhar!</h2>
+
+            <div id="players_list"></div>
+
+            <button onclick="fecharSkill()">FECHAR</button>
           </div>
         </div>
 
@@ -201,13 +217,53 @@
     socket.emit('play');
   }
 
+  let players = [];
+
+  function abrirSkill() {
+    document.getElementById('skill').style.display = 'flex';
+
+    let content = '';
+
+    for (let i = 0; i < players.length; i++) {
+      let player = players[i];
+      let lastTime = (content += `
+        <div onclick="skill(${player.id})"> 
+          <img
+            src=${player.style}
+            class="player"
+          />
+          <div class="card-player">
+            <p>${player.name}</p>
+            <p>Tempo atual: ${player.totalTime}</p>
+          </div>
+        </div>
+      `);
+    }
+
+    players_list.innerHTML = content;
+  }
+
+  function fecharSkill() {
+    document.getElementById('skill').style.display = 'none';
+  }
+
   function skill(id) {
     socket.emit('skill_used', id);
   }
 
-  socket.on('skill_available', (id) => {
-    if (socket.id == id) {
+  socket.on('skill_available', ({ playerId, horses }) => {
+    if (socket.id == playerId) {
+      skill_container.style.display = 'flex';
+      players = horses.filter((h) => h.id !== playerId);
+      console.log(players);
     }
+  });
+
+  socket.on('skill_log', ({ player, target, prevTotalTime, updattedTotalTime }) => {
+    alert(`
+      ${player.name} jogou um tomate em ${target.name}. \n
+      Seu tempo total foi de ${prevTotalTime} para ${updattedTotalTime}
+    `);
   });
 
   socket.on('finish', ({ currentLap, horses }) => {
