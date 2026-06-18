@@ -78,7 +78,7 @@ io.on('connection', (socket) => {
       let r = Number((Math.random() * interval + min).toFixed(1));
 
       let prevTotalTime = target.totalTime;
-      let updattedTotalTime = target.totalTime + r;
+      let updattedTotalTime = Number(target.totalTime + r).toFixed(1);
       let index = horses.findIndex((item) => item.id == player.id);
 
       horses[index].totalTime = updattedTotalTime;
