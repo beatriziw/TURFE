@@ -89,7 +89,7 @@
   const socket = io();
   let res = [];
 
-  socket.on('finish', (horses) => {
+  socket.on('finish', ({ currentLap, horses }) => {
     let sorted = horses.sort((a, b) => a.totalTime - b.totalTime);
 
     for (let i = 0; i < sorted.length; i++) {

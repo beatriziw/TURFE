@@ -61,7 +61,7 @@ io.on('connection', (socket) => {
     console.log(`game started with ${horses.length} horses`);
   });
 
-  socket.on('skill', (id) => {
+  socket.on('skill_used', (id) => {
     let max = 3;
     let min = 1;
     let interval = max - min;
@@ -75,7 +75,7 @@ io.on('connection', (socket) => {
       let lastLap = target.laps[target.laps.length];
       let updattedLastLap = lastLap - r;
 
-      io.emit('skill', {
+      io.emit('skill_log', {
         player,
         target,
         lastLap,
@@ -109,7 +109,7 @@ io.on('connection', (socket) => {
       let r = Number((Math.random() * 9 + 1).toFixed(1));
 
       if (r % 4 == 0) {
-        io.emit('skill', socket.id);
+        io.emit('skill_available', socket.id);
       }
     }
 
