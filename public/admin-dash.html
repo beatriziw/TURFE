@@ -8,12 +8,13 @@
     />
     <link
       rel="stylesheet"
-      href="css/corrida.css"
+      href="css/style.css"
     />
     <link
       href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
       rel="stylesheet"
     />
+
     <script src="/socket.io/socket.io.js"></script>
 
     <title>Turfe</title>
@@ -28,62 +29,42 @@
       />
     </div>
 
-    <div class="fala">
+    <div class="titulo">
       <img
-        src="imgs/balão.webp"
+        src="imgs/card.webp"
         alt=""
       />
-      <p>QUAL É A QUANTIDADE DE VOLTAS?</p>
+      <span>GRAND CHAMPIONSHIP</span>
+      <small id="horses_count"></small>
     </div>
 
-    <img
-      src="imgs/personagem.png"
-      class="personagem"
-    />
-
-    <div class="painel">
+    <div
+      class="start"
+      onclick="start()"
+    >
       <img
         src="imgs/card2.png"
-        class="card-painel"
+        alt=""
       />
-
-      <button
-        class="menos"
-        onclick="diminuir()"
-      >
-        -
-      </button>
-      <span
-        class="quantidade"
-        id="laps_qtt"
-        >4</span
-      >
-      <button
-        class="mais"
-        onclick="aumentar()"
-      >
-        +
-      </button>
+      <span>START</span>
     </div>
 
-    <a
-      onclick="settings()"
-      href="admin-dash.html"
-      class="continue"
-    >
-      <img src="imgs/card_redondo.png" />
-      <span>Abrir sala</span>
-    </a>
+    <div class="rodape">
+      <p>LICENSING SUPPORT V1.2.0-ARCADE</p>
+      <br />
+      <p>© PIXEL TURF STUDIOS</p>
+    </div>
 
     <div
       id="ajuda"
       class="popup"
     >
       <div class="popup-conteudo">
-        <h2>Quantidade de Voltas</h2>
-        <p>Use os botões + e - para escolher quantas voltas a corrida terá.</p>
-        <p>O mínimo é 1 volta e o máximo são 9 voltas.</p>
-        <p>Depois de escolher a quantidade, clique em CONTINUE.</p>
+        <h2>Como Jogar</h2>
+        <p>Clique em START para iniciar a corrida.</p>
+        <p>Escolha seu cavalo e acompanhe a disputa.</p>
+        <p>O objetivo é chegar em primeiro lugar!</p>
+
         <button onclick="fecharAjuda()">FECHAR</button>
       </div>
     </div>
@@ -99,7 +80,6 @@
     </audio>
   </body>
 </html>
-
 <script>
   document.addEventListener(
     'click',
@@ -117,28 +97,13 @@
     document.getElementById('ajuda').style.display = 'none';
   }
 
-  let qtt = Number(laps_qtt.innerHTML);
-
-  function diminuir() {
-    if (qtt == 1) return;
-
-    qtt--;
-    laps_qtt.innerHTML = qtt;
-  }
-
-  function aumentar() {
-    if (qtt == 9) return;
-
-    qtt++;
-    laps_qtt.innerHTML = qtt;
-  }
-
   const socket = io();
 
-  function settings() {
-    let horses = sessionStorage.horsesQtt;
-    let laps = qtt;
+  socket.on('horses_qtt', (qtt) => {
+    horses_count.innerHTML = `${qtt} Cavalos Registrados`;
+  });
 
-    socket.emit('settings', { horses, laps });
+  function start() {
+    socket.emit('start');
   }
 </script>

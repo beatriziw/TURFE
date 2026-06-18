@@ -47,6 +47,8 @@ io.on('connection', (socket) => {
 
     if (horses.length >= 2) ready = true;
 
+    io.emit('horses_qtt', horses.length);
+
     console.log('horses: ', horses);
   });
 
@@ -56,7 +58,7 @@ io.on('connection', (socket) => {
       return;
     }
 
-    io.emit('start', laps);
+    io.emit('startted', laps);
 
     console.log(`game started with ${horses.length} horses`);
   });
