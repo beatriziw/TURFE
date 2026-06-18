@@ -116,7 +116,7 @@ io.on('connection', (socket) => {
     if (horse && currentLap < totalLaps) {
       let r = Number((Math.random() * 9 + 1).toFixed());
 
-      if (r % 4 == 0) {
+      if (r % 3 == 0) {
         io.emit('skill_available', { playerId: socket.id, horses });
       }
     }
