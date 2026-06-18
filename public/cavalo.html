@@ -210,7 +210,9 @@
     }
   });
 
-  socket.on('finish', () => {
+  socket.on('finish', ({ currentLap, horses }) => {
+    sessionStorage.currentLap = currentLap;
+    sessionStorage.horses = JSON.stringify(horses);
     window.location.href = '/podio.html';
   });
 </script>

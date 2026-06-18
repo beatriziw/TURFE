@@ -23,39 +23,39 @@
       <div class="posicao segundo-lugar">
         <img
           id="second_style"
-          src="imgs/cavalo1.png"
           alt="2º Lugar"
           class="cavalo"
         />
         <div class="card-vencedor">
           <p>2° LUGAR</p>
-          <p id="second_name">aaaa</p>
+          <p id="second_name"></p>
+          <p id="second_totalTime"></p>
         </div>
       </div>
 
       <div class="posicao primeiro-lugar">
         <img
           id="first_style"
-          src="imgs/cavalo2.png"
           alt="1º Lugar"
           class="cavalo"
         />
         <div class="card-vencedor">
           <p>1° LUGAR</p>
-          <p id="first_name">aaaa</p>
+          <p id="first_name"></p>
+          <p id="first_totalTime"></p>
         </div>
       </div>
 
       <div class="posicao terceiro-lugar">
         <img
           id="third_style"
-          src="imgs/cavalo3.png"
           alt="3º Lugar"
           class="cavalo"
         />
         <div class="card-vencedor">
           <p>3° LUGAR</p>
-          <p id="third_name">aaaa</p>
+          <p id="third_name"></p>
+          <p id="third_totalTime"></p>
         </div>
       </div>
     </div>
@@ -87,32 +87,31 @@
   );
 
   const socket = io();
+
   let res = [];
+  let horses = JSON.parse(sessionStorage.horses);
+  let sorted = horses.sort((a, b) => a.totalTime - b.totalTime);
 
-  socket.on('finish', ({ currentLap, horses }) => {
-    let sorted = horses.sort((a, b) => a.totalTime - b.totalTime);
-
-    for (let i = 0; i < sorted.length; i++) {
-      let item = sorted[i];
-      if (i <= 2) {
-        res.push({
-          name: item.name,
-          style: item.style,
-          totalTime: item.totalTime
-        });
-      }
+  for (let i = 0; i < sorted.length; i++) {
+    let item = sorted[i];
+    if (i <= 2) {
+      res.push({
+        name: item.name,
+        style: item.style,
+        totalTime: item.totalTime
+      });
     }
+  }
 
-    first_name.innerHTML = sorted[0].name;
-    second_name.innerHTML = sorted[1].name;
-    third_name.innerHTML = sorted[2].name;
+  first_name.innerHTML = sorted[0].name;
+  second_name.innerHTML = sorted[1].name;
+  third_name.innerHTML = sorted[2].name;
 
-    first_style.src = sorted[0].style;
-    second_style.src = sorted[1].style;
-    third_style.src = sorted[2].style;
+  first_style.src = sorted[0].style;
+  second_style.src = sorted[1].style;
+  third_style.src = sorted[2].style;
 
-    first_totalTime.innerHTML = sorted[0].totalTime;
-    second_totalTime.innerHTML = sorted[1].totalTime;
-    third_totalTime.innerHTML = sorted[2].totalTime;
-  });
+  first_totalTime.innerHTML = sorted[0].totalTime;
+  second_totalTime.innerHTML = sorted[1].totalTime;
+  third_totalTime.innerHTML = sorted[2].totalTime;
 </script>
